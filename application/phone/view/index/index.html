@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>ichat 移动版</title>
+    <link rel="stylesheet" href="__COMMON__/layui/css/layui.mobile.css">
+    <link id="layuicss-skinlayim-mobilecss" rel="stylesheet" href="__COMMON__/layui/css/modules/layim/mobile/layim.css?v=2.0" media="all">
+</head>
+<body>
+
+<script src="__COMMON__/layui/layui.js"></script>
+<script>
+    var userlist = {$userlist};
+    var uid = "{$uinfo.id}";
+    var uname = "{$uinfo.username}";
+    var avatar = "{$uinfo.avatar}";
+    var sign = "{$uinfo.sign}";
+
+    layui.use('mobile', function(){
+        var mobile = layui.mobile
+            ,layim = mobile.layim
+            ,layer = mobile.layer;
+
+        layim.config({
+            //上传图片接口
+            uploadImage: {
+                url: '/upload/image' //（返回的数据格式见下文）
+                ,type: '' //默认post
+            }
+
+            //上传文件接口
+            ,uploadFile: {
+                url: '/upload/file' //（返回的数据格式见下文）
+                ,type: '' //默认post
+            }
+
+            ,init: userlist
+
+            //扩展更多列表
+            ,moreList: [{
+                alias: 'find'
+                ,title: '发现'
+                ,iconUnicode: '&#xe628;' //图标字体的unicode，可不填
+                ,iconClass: '' //图标字体的class类名
+            },{
+                alias: 'share'
+                ,title: '分享与邀请'
+                ,iconUnicode: '&#xe641;' //图标字体的unicode，可不填
+                ,iconClass: '' //图标字体的class类名
+            }]
+
+            //,isNewFriend: false //是否开启“新的朋友”
+            ,isgroup: true //是否开启“群聊”
+            //,chatTitleColor: '#c00' //顶部Bar颜色
+            //,title: 'LayIM' //应用名，默认：我的IM
+        });
+    });
+</script>
+</body>
+</html>
